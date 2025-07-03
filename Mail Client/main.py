@@ -16,3 +16,20 @@ msg=MIMEMultipart()
 msg['From']='NeuralNine'
 msg['To']='baisnabirout001@gmail.com'
 msg['Subject']='Just a Test'
+
+with open('message.txt','r') as f:
+  message=f.read()
+msg.attach(MIMEText(message,'plain'))
+
+filename='coding.jpg'
+attachment=open(filename,'rb')
+
+p=MIMEBase('application','octet-stream')
+p.set_payload(attachment.read())
+
+encoders.encode_base64(p)
+p.add_header('Content-Disposition',f'attachment;filename={filename}')
+msg.attach(p)
+
+text=msg.as_string()
+server.sendmail('baisnabirout001@gmail.com','baisnabirout001@gmail.com')

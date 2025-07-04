@@ -9,4 +9,4 @@ t.start()
 while input("") != 'STOP':
   continue
 
-sender.stop_server()
+receiver.start_server()

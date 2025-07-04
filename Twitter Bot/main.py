@@ -28,3 +28,6 @@ tweet_user=api.user_timeline(user_id=user.id)
 for tweet in tweets_user:
   if not tweet.favorited:
     api.create_favorite(tweet.id)
+
+tweets=tweepy.Cursor(api.search, q="brains",lang="en").items(10)
+print([tweet.text for tweet in tweets])

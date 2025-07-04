@@ -38,12 +38,13 @@ def handle(client):
       else:
         broadcast(message)
     except:
-      index=clients.index(client)
-      clients.remove(client)
-      nickname=nicknames[index]
-      broadcast(f'{nickname} left the chat'.encode('ascii'))
-      nicknames.remove(nickname)
-      break
+      if client in clients:
+        index=clients.index(client)
+        clients.remove(client)
+        nickname=nicknames[index]
+        broadcast(f'{nickname} left the chat'.encode('ascii'))
+        nicknames.remove(nickname)
+        break
 
 def receive():
   while True:
